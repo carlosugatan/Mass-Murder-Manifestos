@@ -20,11 +20,19 @@ from datetime import datetime
 #
 # eric_auvinen = textract.process("/Users/Carlo/Google Drive/FA18 Classes/SI508/Assignments - HW/Final Project/Manifesto-Project/Auvinen.doc", encoding='utf_8')
 
-# Scraping
+# Web Scraping
 # CACHE_FNAME = "manifesto-data.json"
+# Unabomber
 # url_to_scrape = "https://www.washingtonpost.com/wp-srv/national/longterm/unabomber/manifesto.text.htm"
+
+# Christopher Dorner
+# url_to_scrape = "http://www.laist.com/2013/02/07/christopher_dorners_manifesto_in_fu.php"
+
+# Adkission Manifesto
+# url_to_scrape = "https://faith17983.wordpress.com/2015/05/31/the-adkisson-manifesto/"
+
 # primary_cache = Cache(CACHE_FNAME)
-#
+
 # while primary_cache.get(url_to_scrape) is None:
 # 	data = requests.get(url_to_scrape)
 # 	html_text = data.text
@@ -54,7 +62,6 @@ from datetime import datetime
 # Perform sentiment analysis?
     # Negative or positive, although it will probaly be all negative
     # Will need time to read up on
-
 
 
 
