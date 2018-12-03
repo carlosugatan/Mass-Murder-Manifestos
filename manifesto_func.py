@@ -1,12 +1,6 @@
 # import statements
 import json
 from manifesto import *
-from bs4 import BeautifulSoup
-from improved_cache_v1 import *
-import requests
-import textract
-from datetime import datetime
-
 
 # pip install matplotlib
 # pip install pandas
@@ -99,11 +93,66 @@ def word_cloud_cho():
     plt.tight_layout(pad = 0)
     plt.show()
 
+def word_cloud_auvinen():
+    with open ("manifesto-auvinen.json", 'r') as f:
+        auvinen_manifesto = json.load(f)
+    auvinen_text = auvinen_manifesto['Eric Auvinen']["Natural Selector's Manifesto"]
+
+    comment_words = ' '
+    stopwords = set(STOPWORDS)
+
+    tokens = auvinen_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+    for words in tokens:
+        comment_words = comment_words + words + ' '
+    # print(comment_words)
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    stopwords = stopwords,
+                    min_font_size = 10).generate(comment_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def word_cloud_kaczynski():
+    with open ("manifesto-kaczynski.json", 'r') as f:
+        kaczynski_manifesto = json.load(f)
+    kaczynski_text = kaczynski_manifesto['Ted Kaczynski']["Industrial Society and Its Future"]
+
+    comment_words = ' '
+    stopwords = set(STOPWORDS)
+
+    tokens = kaczynski_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+    for words in tokens:
+        comment_words = comment_words + words + ' '
+    # print(comment_words)
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    stopwords = stopwords,
+                    min_font_size = 10).generate(comment_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
 
 # Run functions here
 # word_cloud_roof()
 # word_cloud_rodger()
 # word_cloud_cho()
+# word_cloud_auvinen()
+# word_cloud_kaczynski()
+
+
 
 
 # Functions
