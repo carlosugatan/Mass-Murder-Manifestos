@@ -145,13 +145,67 @@ def word_cloud_kaczynski():
     plt.tight_layout(pad = 0)
     plt.show()
 
+def word_cloud_dorner():
+    with open ("manifesto-dorner.json", 'r') as f:
+        dorner_manifesto = json.load(f)
+    dorner_text = dorner_manifesto['Christopher Dorner']["Christopher Dorner's Manifesto"]
+
+    comment_words = ' '
+    stopwords = set(STOPWORDS)
+
+    tokens = dorner_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+    for words in tokens:
+        comment_words = comment_words + words + ' '
+    # print(comment_words)
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    stopwords = stopwords,
+                    min_font_size = 10).generate(comment_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def word_cloud_adkission():
+    with open ("manifesto-adkission.json", 'r') as f:
+        adkission_manifesto = json.load(f)
+    adkission_text = adkission_manifesto['Adkission Manifesto']["The Adkission Manifesto"]
+
+    comment_words = ' '
+    stopwords = set(STOPWORDS)
+
+    tokens = adkission_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+    for words in tokens:
+        comment_words = comment_words + words + ' '
+    # print(comment_words)
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    stopwords = stopwords,
+                    min_font_size = 10).generate(comment_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+
 # Run functions here
 # word_cloud_roof()
 # word_cloud_rodger()
 # word_cloud_cho()
 # word_cloud_auvinen()
 # word_cloud_kaczynski()
-
+# word_cloud_dorner()
+# word_cloud_adkission()
 
 
 
