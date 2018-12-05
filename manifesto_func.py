@@ -1,20 +1,41 @@
 # import statements
 import json
-from manifesto import *
+from data_scraper import *
 
 # pip install matplotlib
+# conda install matplotlib
 # pip install pandas
+# conda install pandas
 # pip install wordcloud
+
+# maybe: conda install scipy
+# pip freeze > requirements.txt
 
 # Python program to generate WordCloud
 
 # importing all necessery modules
 from wordcloud import WordCloud, STOPWORDS
+# import matplotlib as mpl
+# mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
+## Setting up manifesto_data to load text data
+with open ("manifesto-data.json", 'r') as f:
+    manifesto_data = json.load(f)
+
+## Vulgar Words List
+vulgar_words_lst = []
+with open('vulgar_words.txt', mode='r') as f:
+    contents_vulgar_words = f.readlines()
+    for words in contents_vulgar_words:
+        words = words.replace('\n', '')
+        vulgar_words_lst.append(words)
+
+
 def word_cloud_roof():
-    with open ("manifesto-roof.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         roof_manifesto = json.load(f)
     roof_text = roof_manifesto['Dylan Roof']['Dylan Roof Manifesto']
 
@@ -41,7 +62,7 @@ def word_cloud_roof():
 
 
 def word_cloud_rodger():
-    with open ("manifesto-rodger.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         rodger_manifesto = json.load(f)
     rodger_text = rodger_manifesto['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
 
@@ -68,7 +89,7 @@ def word_cloud_rodger():
 
 
 def word_cloud_cho():
-    with open ("manifesto-cho.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         cho_manifesto = json.load(f)
     cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
 
@@ -94,7 +115,7 @@ def word_cloud_cho():
     plt.show()
 
 def word_cloud_auvinen():
-    with open ("manifesto-auvinen.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         auvinen_manifesto = json.load(f)
     auvinen_text = auvinen_manifesto['Eric Auvinen']["Natural Selector's Manifesto"]
 
@@ -120,7 +141,7 @@ def word_cloud_auvinen():
     plt.show()
 
 def word_cloud_kaczynski():
-    with open ("manifesto-kaczynski.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         kaczynski_manifesto = json.load(f)
     kaczynski_text = kaczynski_manifesto['Ted Kaczynski']["Industrial Society and Its Future"]
 
@@ -146,7 +167,7 @@ def word_cloud_kaczynski():
     plt.show()
 
 def word_cloud_dorner():
-    with open ("manifesto-dorner.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         dorner_manifesto = json.load(f)
     dorner_text = dorner_manifesto['Christopher Dorner']["Christopher Dorner's Manifesto"]
 
@@ -172,10 +193,10 @@ def word_cloud_dorner():
     plt.show()
 
 def word_cloud_adkission():
-    with open ("manifesto-adkission.json", 'r') as f:
+    with open ("manifesto-data.json", 'r') as f:
         adkission_manifesto = json.load(f)
     adkission_text = adkission_manifesto['Adkission Manifesto']["The Adkission Manifesto"]
-
+    print("adkission")
     comment_words = ' '
     stopwords = set(STOPWORDS)
 
@@ -197,8 +218,87 @@ def word_cloud_adkission():
     plt.tight_layout(pad = 0)
     plt.show()
 
+def vulgar_words_roof():
+    roof_word_lst = []
+    with open ("manifesto-data.json", 'r') as f:
+        roof_manifesto = json.load(f)
+    roof_text = roof_manifesto['Dylan Roof']['Dylan Roof Manifesto']
+    tokens = roof_text.split()
 
-# Run functions here
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+        roof_word_lst.append(tokens[i])
+
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in roof_word_lst:
+            print(vulgar_word)
+
+
+def vulgar_words_rodger():
+    rodger_word_lst = []
+    with open ("manifesto-data.json", 'r') as f:
+        rodger_manifesto = json.load(f)
+    rodger_text = rodger_manifesto['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
+    tokens = rodger_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+        rodger_word_lst.append(tokens[i])
+
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in rodger_word_lst:
+            print(vulgar_word)
+
+def vulgar_words_cho():
+    cho_word_lst = []
+    with open ("manifesto-data.json", 'r') as f:
+        cho_manifesto = json.load(f)
+    cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
+    tokens = cho_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+        cho_word_lst.append(tokens[i])
+
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in cho_word_lst:
+            print(vulgar_word)
+
+
+### WORD CLOUD FOR VULGAR WORDS ###
+def word_cloud_fuck():
+    cho_word_lst = []
+    with open ("manifesto-data.json", 'r') as f:
+        cho_manifesto = json.load(f)
+    cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
+    vulgar_words = ' '
+    tokens = cho_text.split()
+
+    for i in range (len(tokens)):
+        tokens[i] = tokens[i].lower()
+        cho_word_lst.append(tokens[i])
+
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in cho_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+## Vulgar words functions ##
+# vulgar_words_roof()
+# vulgar_words_rodger()
+# vulgar_words_cho()
+# word_cloud_fuck()
+
+## Word cloud functions ##
 # word_cloud_roof()
 # word_cloud_rodger()
 # word_cloud_cho()
@@ -206,7 +306,6 @@ def word_cloud_adkission():
 # word_cloud_kaczynski()
 # word_cloud_dorner()
 # word_cloud_adkission()
-
 
 
 # Functions
@@ -228,3 +327,4 @@ def word_cloud_adkission():
 # Some sites to consider:
 # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
 # https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/
+# https://www.cs.cmu.edu/~biglou/resources/
