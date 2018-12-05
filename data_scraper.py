@@ -3,6 +3,7 @@
 
 # import statements
 import json
+import string
 from bs4 import BeautifulSoup
 from improved_cache_v1 import *
 import requests
@@ -156,8 +157,12 @@ from datetime import datetime
 # manifesto_text = soup.find_all('td')
 
 
+
+
 # Web Scraping Vulgar Words
-url_to_scrape = "https://www.noswearing.com/dictionary/a"
+letters = list(string.ascii_lowercase)
+for letter in letters:
+    url_to_scrape = "https://www.noswearing.com/dictionary/b"
 CACHE_FNAME = "vulgar_words.json"
 
 primary_cache = Cache(CACHE_FNAME)
@@ -168,10 +173,6 @@ while primary_cache.get(url_to_scrape) is None:
 	primary_cache.set(url_to_scrape,html_text)
 
 soup = BeautifulSoup(primary_cache.get(url_to_scrape), features="html.parser")
-
-# with open('manifesto-adkission.json', 'a') as outfile:
-#     json.dump(manifesto_dict, outfile)
-#     print("cached")
-
-page_title = soup.title.text
-print(page_title)
+vulgar_text = soup.find('td', {'valign': 'top'})
+for word in vulgar_text.find_all('b'):
+    print(word.text)
