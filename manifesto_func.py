@@ -292,6 +292,49 @@ def word_cloud_fuck():
     plt.tight_layout(pad = 0)
     plt.show()
 
+def word_count():
+    with open ("manifesto-data.json", 'r') as f:
+        manifesto_data = json.load(f)
+
+    # Cho
+    cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
+    tokens_cho = cho_text.split()
+    print("Cho total length:",len(tokens_cho))
+
+    # Rodger
+    rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
+    tokens_rodger = rodger_text.split()
+    print("Rodger total length:",len(tokens_rodger))
+
+    # Adkission
+    adkission_text = manifesto_data['Adkission Manifesto']['The Adkission Manifesto']
+    tokens_adkission = adkission_text.split()
+    print("Adkission total length:",len(tokens_adkission))
+
+    # Auvinen
+    auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
+    tokens_auvinen = auvinen_text.split()
+    print("Auvinen total length:",len(tokens_auvinen))
+
+    # Dorner
+    dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
+    tokens_dorner = dorner_text.split()
+    print("Dorner total length:",len(tokens_dorner))
+
+    # Kaczynski
+    kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
+    tokens_kaczynski = kaczynski_text.split()
+    print("Kaczynski total length:",len(tokens_kaczynski))
+
+    # Roof
+    roof_text = manifesto_data['Dylan Roof']["Dylan Roof Manifesto"]
+    tokens_roof = roof_text.split()
+    print("Roof total length:",len(tokens_roof))
+
+# word_count()
+
+
+
 ## Vulgar words functions ##
 # vulgar_words_roof()
 # vulgar_words_rodger()
