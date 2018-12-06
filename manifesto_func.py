@@ -2,6 +2,7 @@
 import json
 from data_scraper import *
 
+
 # pip install matplotlib
 # conda install matplotlib
 # pip install pandas
@@ -196,7 +197,6 @@ def word_cloud_adkission():
     with open ("manifesto-data.json", 'r') as f:
         adkission_manifesto = json.load(f)
     adkission_text = adkission_manifesto['Adkission Manifesto']["The Adkission Manifesto"]
-    print("adkission")
     comment_words = ' '
     stopwords = set(STOPWORDS)
 
@@ -299,41 +299,52 @@ def word_count():
     # Cho
     cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
     tokens_cho = cho_text.split()
-    print("Cho total length:",len(tokens_cho))
+    # print("Cho total length:",len(tokens_cho))
 
     # Rodger
     rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
     tokens_rodger = rodger_text.split()
-    print("Rodger total length:",len(tokens_rodger))
+    # print("Rodger total length:",len(tokens_rodger))
 
     # Adkission
     adkission_text = manifesto_data['Adkission Manifesto']['The Adkission Manifesto']
     tokens_adkission = adkission_text.split()
-    print("Adkission total length:",len(tokens_adkission))
+    # print("Adkission total length:",len(tokens_adkission))
 
     # Auvinen
     auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
     tokens_auvinen = auvinen_text.split()
-    print("Auvinen total length:",len(tokens_auvinen))
+    # print("Auvinen total length:",len(tokens_auvinen))
 
     # Dorner
     dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
     tokens_dorner = dorner_text.split()
-    print("Dorner total length:",len(tokens_dorner))
+    # print("Dorner total length:",len(tokens_dorner))
 
     # Kaczynski
     kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
     tokens_kaczynski = kaczynski_text.split()
-    print("Kaczynski total length:",len(tokens_kaczynski))
+    # print("Kaczynski total length:",len(tokens_kaczynski))
 
     # Roof
     roof_text = manifesto_data['Dylan Roof']["Dylan Roof Manifesto"]
     tokens_roof = roof_text.split()
-    print("Roof total length:",len(tokens_roof))
+    # print("Roof total length:",len(tokens_roof))
+
+    df=pd.DataFrame({'Authors': [ 'Adkission', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'],
+                     'Number of Words': [len(tokens_adkission),len(tokens_auvinen),len(tokens_cho),len(tokens_dorner),len(tokens_kaczynski),len(tokens_rodger),len(tokens_roof)],})
+
+    df = df.set_index('Authors')
+    # df.plot(kind='bar',  title='Number of words')
+    ax = df.plot(kind='bar',  title='Number of Words')
+    ax.set_ylim(0, 130000)
+    for i, label in enumerate(list(df.index)):
+        score = df.ix[label]['Number of Words']
+        ax.annotate(str(score), (i-0.299, score + 0.04))
+    plt.tight_layout(pad = 1)
+    plt.show()
 
 # word_count()
-
-
 
 ## Vulgar words functions ##
 # vulgar_words_roof()
@@ -348,7 +359,7 @@ def word_count():
 # word_cloud_auvinen()
 # word_cloud_kaczynski()
 # word_cloud_dorner()
-# word_cloud_adkission()
+# word_cloud_adkission()[]
 
 
 # Functions
