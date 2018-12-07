@@ -9,7 +9,6 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
 # pip install matplotlib
 # conda install matplotlib
 # pip install pandas
@@ -19,11 +18,6 @@ import pandas as pd
 # maybe: conda install scipy
 # pip freeze > requirements.txt
 
-
-## Setting up manifesto_data to load text data
-with open ("manifesto-data.json", 'r') as f:
-    manifesto_data = json.load(f)
-
 ## Vulgar Words List
 vulgar_words_lst = []
 with open('vulgar_words.txt', mode='r') as f:
@@ -32,22 +26,56 @@ with open('vulgar_words.txt', mode='r') as f:
         words = words.replace('\n', '')
         vulgar_words_lst.append(words)
 
+## Setting up stopwords
+stopwords = set(STOPWORDS)
 
+## Setting up manifesto_data to load text data
+## Setting up each variable of each author of manifesto to their manifesto text
+with open ("manifesto-data.json", 'r') as f:
+    manifesto_data = json.load(f)
+
+    ## Adkission
+    adkission_text = manifesto_data['Adkission Manifesto']["The Adkission Manifesto"]
+    tokens_adkission = adkission_text.split()
+
+    ## Auvinen
+    auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
+    tokens_auvinen = auvinen_text.split()
+
+    ## Dorner
+    dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
+    tokens_dorner = dorner_text.split()
+
+    ## Cho
+    cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
+    tokens_cho = cho_text.split()
+    cho_word_lst = []
+    for i in range (len(tokens_cho)):
+        tokens_cho[i] = tokens_cho[i].lower()
+        cho_word_lst.append(tokens_cho[i])
+
+    ## Kaczynski
+    kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
+    tokens_kaczynski = kaczynski_text.split()
+
+    ## Rodger
+    rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
+    tokens_rodger = rodger_text.split()
+
+    ## Roof
+    roof_text = manifesto_data['Dylan Roof']['Dylan Roof Manifesto']
+    tokens_roof = roof_text.split()
+
+
+## Word Cloud Functions ##
 def word_cloud_roof():
-    with open ("manifesto-data.json", 'r') as f:
-        roof_manifesto = json.load(f)
-    roof_text = roof_manifesto['Dylan Roof']['Dylan Roof Manifesto']
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = roof_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_roof)):
+        tokens_roof[i] = tokens_roof[i].lower()
+    for words in tokens_roof:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -61,20 +89,13 @@ def word_cloud_roof():
 
 
 def word_cloud_rodger():
-    with open ("manifesto-data.json", 'r') as f:
-        rodger_manifesto = json.load(f)
-    rodger_text = rodger_manifesto['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = rodger_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_rodger)):
+        tokens_rodger[i] = tokens_rodger[i].lower()
+    for words in tokens_rodger:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -86,22 +107,14 @@ def word_cloud_rodger():
     plt.tight_layout(pad = 0)
     plt.show()
 
-
 def word_cloud_cho():
-    with open ("manifesto-data.json", 'r') as f:
-        cho_manifesto = json.load(f)
-    cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = cho_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_cho)):
+        tokens_cho[i] = tokens_cho[i].lower()
+    for words in tokens_cho:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -114,20 +127,15 @@ def word_cloud_cho():
     plt.show()
 
 def word_cloud_auvinen():
-    with open ("manifesto-data.json", 'r') as f:
-        auvinen_manifesto = json.load(f)
-    auvinen_text = auvinen_manifesto['Eric Auvinen']["Natural Selector's Manifesto"]
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = auvinen_text.split()
+    tokens_auvinen = auvinen_text.split()
 
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_auvinen)):
+        tokens_auvinen[i] = tokens_auvinen[i].lower()
+    for words in tokens_auvinen:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -140,20 +148,13 @@ def word_cloud_auvinen():
     plt.show()
 
 def word_cloud_kaczynski():
-    with open ("manifesto-data.json", 'r') as f:
-        kaczynski_manifesto = json.load(f)
-    kaczynski_text = kaczynski_manifesto['Ted Kaczynski']["Industrial Society and Its Future"]
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = kaczynski_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_kaczynski)):
+        tokens_kaczynski[i] = tokens_kaczynski[i].lower()
+    for words in tokens_kaczynski:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -166,20 +167,13 @@ def word_cloud_kaczynski():
     plt.show()
 
 def word_cloud_dorner():
-    with open ("manifesto-data.json", 'r') as f:
-        dorner_manifesto = json.load(f)
-    dorner_text = dorner_manifesto['Christopher Dorner']["Christopher Dorner's Manifesto"]
-
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = dorner_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_dorner)):
+        tokens_dorner[i] = tokens_dorner[i].lower()
+    for words in tokens_dorner:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -192,19 +186,13 @@ def word_cloud_dorner():
     plt.show()
 
 def word_cloud_adkission():
-    with open ("manifesto-data.json", 'r') as f:
-        adkission_manifesto = json.load(f)
-    adkission_text = adkission_manifesto['Adkission Manifesto']["The Adkission Manifesto"]
     comment_words = ' '
-    stopwords = set(STOPWORDS)
 
-    tokens = adkission_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-    for words in tokens:
+    for i in range (len(tokens_adkission)):
+        tokens_adkission[i] = tokens_adkission[i].lower()
+    for words in tokens_adkission:
         comment_words = comment_words + words + ' '
-    # print(comment_words)
+
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
                     stopwords = stopwords,
@@ -216,6 +204,7 @@ def word_cloud_adkission():
     plt.tight_layout(pad = 0)
     plt.show()
 
+## Vulgar Words Functions ##
 def vulgar_words_roof():
     roof_word_lst = []
     with open ("manifesto-data.json", 'r') as f:
@@ -290,50 +279,13 @@ def word_cloud_fuck():
     plt.tight_layout(pad = 0)
     plt.show()
 
+## Word Count Functions ##
 def word_count():
-    with open ("manifesto-data.json", 'r') as f:
-        manifesto_data = json.load(f)
-
-    # Cho
-    cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
-    tokens_cho = cho_text.split()
-    # print("Cho total length:",len(tokens_cho))
-
-    # Rodger
-    rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
-    tokens_rodger = rodger_text.split()
-    # print("Rodger total length:",len(tokens_rodger))
-
-    # Adkission
-    adkission_text = manifesto_data['Adkission Manifesto']['The Adkission Manifesto']
-    tokens_adkission = adkission_text.split()
-    # print("Adkission total length:",len(tokens_adkission))
-
-    # Auvinen
-    auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
-    tokens_auvinen = auvinen_text.split()
-    # print("Auvinen total length:",len(tokens_auvinen))
-
-    # Dorner
-    dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
-    tokens_dorner = dorner_text.split()
-    # print("Dorner total length:",len(tokens_dorner))
-
-    # Kaczynski
-    kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
-    tokens_kaczynski = kaczynski_text.split()
-    # print("Kaczynski total length:",len(tokens_kaczynski))
-
-    # Roof
-    roof_text = manifesto_data['Dylan Roof']["Dylan Roof Manifesto"]
-    tokens_roof = roof_text.split()
-    # print("Roof total length:",len(tokens_roof))
 
     df=pd.DataFrame({'Authors': [ 'Adkission', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'],
                      'Number of Words': [len(tokens_adkission),len(tokens_auvinen),len(tokens_cho),len(tokens_dorner),len(tokens_kaczynski),len(tokens_rodger),len(tokens_roof)],})
 
     df = df.set_index('Authors')
-    # df.plot(kind='bar',  title='Number of words')
     ax = df.plot(kind='bar',  title='Total Words in Manifesto')
     ax.set_ylabel('Number of Words')
     ax.set_ylim(0, 130000)
@@ -343,27 +295,18 @@ def word_count():
     plt.tight_layout(pad = 1)
     plt.show()
 
-
 def unique_words():
-    with open ("manifesto-data.json", 'r') as f:
-        manifesto_data = json.load(f)
 
     # Cho
-    cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
     cho_words = []
-    tokens_cho = cho_text.split()
     for word in tokens_cho:
         if word not in cho_words:
             cho_words.append(word)
         else:
             pass
-    # print(len(tokens_cho))
-    # print(len(cho_words))
 
     # Rodger
-    rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
     rodger_words = []
-    tokens_rodger = rodger_text.split()
     for word in tokens_rodger:
         if word not in rodger_words:
             rodger_words.append(word)
@@ -371,9 +314,7 @@ def unique_words():
             pass
 
     # Adkission
-    adkission_text = manifesto_data['Adkission Manifesto']['The Adkission Manifesto']
     adkission_words = []
-    tokens_adkission = adkission_text.split()
     for word in tokens_adkission:
         if word not in adkission_words:
             adkission_words.append(word)
@@ -381,9 +322,7 @@ def unique_words():
             pass
 
     # Auvinen
-    auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
     auvinen_words = []
-    tokens_auvinen = auvinen_text.split()
     for word in tokens_auvinen:
         if word not in auvinen_words:
             auvinen_words.append(word)
@@ -391,9 +330,7 @@ def unique_words():
             pass
 
     # Dorner
-    dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
     dorner_words = []
-    tokens_dorner = dorner_text.split()
     for word in tokens_dorner:
         if word not in dorner_words:
             dorner_words.append(word)
@@ -401,9 +338,7 @@ def unique_words():
             pass
 
     # Kaczynski
-    kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
     kaczynski_words = []
-    tokens_kaczynski = kaczynski_text.split()
     for word in tokens_kaczynski:
         if word not in kaczynski_words:
             kaczynski_words.append(word)
@@ -411,9 +346,7 @@ def unique_words():
             pass
 
     # Roof
-    roof_text = manifesto_data['Dylan Roof']["Dylan Roof Manifesto"]
     roof_words = []
-    tokens_roof = roof_text.split()
     for word in tokens_roof:
         if word not in roof_words:
             roof_words.append(word)
@@ -449,15 +382,16 @@ def unique_words():
             ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
                     '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=6.5)
 
-
     autolabel(rects1)
     autolabel(rects2)
     plt.tight_layout(pad = 1)
     plt.show()
 
+### %%%% RUN FUNCTIONS HERE %%%% ###
+
 # unique_words()
 
-word_count()
+# word_count()
 
 ## Vulgar words functions ##
 # vulgar_words_roof()
@@ -472,18 +406,17 @@ word_count()
 # word_cloud_auvinen()
 # word_cloud_kaczynski()
 # word_cloud_dorner()
-# word_cloud_adkission()[]
-
+# word_cloud_adkission()
 
 # Functions
 
-# I want to create a word cloud of each manifesto of most word used
+# I want to create a word cloud of each manifesto of most word used - DONE
     # Realted to that, I want to create a graph of each manifesto of most word used
 
-# I want to create a graph of word count for each manifesto
-    # Related to that, show which one has the most words, comparing each manifesto
+# I want to create a graph of word count for each manifesto - DONE
+    # Related to that, show which one has the most words, comparing each manifesto - DONE
 
-# I want to show which one had the most unique vocabulary
+# I want to show which one had the most unique vocabulary - DONE
 
 # Perform sentiment analysis?
     # Negative or positive, although it will probaly be all negative
