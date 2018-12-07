@@ -37,14 +37,26 @@ with open ("manifesto-data.json", 'r') as f:
     ## Adkission
     adkission_text = manifesto_data['Adkission Manifesto']["The Adkission Manifesto"]
     tokens_adkission = adkission_text.split()
+    adkission_word_lst = []
+    for i in range (len(tokens_adkission)):
+        tokens_adkission[i] = tokens_adkission[i].lower()
+        adkission_word_lst.append(tokens_adkission[i])
 
     ## Auvinen
     auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
     tokens_auvinen = auvinen_text.split()
+    auvinen_word_lst = []
+    for i in range (len(tokens_auvinen)):
+        tokens_auvinen[i] = tokens_auvinen[i].lower()
+        auvinen_word_lst.append(tokens_auvinen[i])
 
     ## Dorner
     dorner_text = manifesto_data['Christopher Dorner']["Christopher Dorner's Manifesto"]
     tokens_dorner = dorner_text.split()
+    dorner_word_lst = []
+    for i in range (len(tokens_dorner)):
+        tokens_dorner[i] = tokens_dorner[i].lower()
+        dorner_word_lst.append(tokens_dorner[i])
 
     ## Cho
     cho_text = manifesto_data['Seung Hui Cho']['Seung Hui Cho Manifesto']
@@ -57,14 +69,26 @@ with open ("manifesto-data.json", 'r') as f:
     ## Kaczynski
     kaczynski_text = manifesto_data['Ted Kaczynski']["Industrial Society and Its Future"]
     tokens_kaczynski = kaczynski_text.split()
+    kaczynski_word_lst = []
+    for i in range (len(tokens_kaczynski)):
+        tokens_kaczynski[i] = tokens_kaczynski[i].lower()
+        kaczynski_word_lst.append(tokens_kaczynski[i])
 
     ## Rodger
     rodger_text = manifesto_data['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
     tokens_rodger = rodger_text.split()
+    rodger_word_lst = []
+    for i in range (len(tokens_rodger)):
+        tokens_rodger[i] = tokens_rodger[i].lower()
+        rodger_word_lst.append(tokens_rodger[i])
 
     ## Roof
     roof_text = manifesto_data['Dylan Roof']['Dylan Roof Manifesto']
     tokens_roof = roof_text.split()
+    roof_word_lst = []
+    for i in range (len(tokens_roof)):
+        tokens_roof[i] = tokens_roof[i].lower()
+        roof_word_lst.append(tokens_roof[i])
 
 
 ## Word Cloud Functions ##
@@ -205,68 +229,107 @@ def word_cloud_adkission():
     plt.show()
 
 ## Vulgar Words Functions ##
-def vulgar_words_roof():
-    roof_word_lst = []
-    with open ("manifesto-data.json", 'r') as f:
-        roof_manifesto = json.load(f)
-    roof_text = roof_manifesto['Dylan Roof']['Dylan Roof Manifesto']
-    tokens = roof_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-        roof_word_lst.append(tokens[i])
-
+def vulgar_words_adkission():
+    vulgar_words = ' '
     for vulgar_word in vulgar_words_lst:
-        if vulgar_word in roof_word_lst:
-            print(vulgar_word)
+        if vulgar_word in adkission_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
 
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
 
-def vulgar_words_rodger():
-    rodger_word_lst = []
-    with open ("manifesto-data.json", 'r') as f:
-        rodger_manifesto = json.load(f)
-    rodger_text = rodger_manifesto['Elliot Rodger']['The Twisted World: The Story of Elliot Rodger']
-    tokens = rodger_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-        rodger_word_lst.append(tokens[i])
-
+def vulgar_words_auvinen():
+    vulgar_words = ' '
     for vulgar_word in vulgar_words_lst:
-        if vulgar_word in rodger_word_lst:
-            print(vulgar_word)
+        if vulgar_word in auvinen_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
 
 def vulgar_words_cho():
-    cho_word_lst = []
-    with open ("manifesto-data.json", 'r') as f:
-        cho_manifesto = json.load(f)
-    cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
-    tokens = cho_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-        cho_word_lst.append(tokens[i])
-
+    vulgar_words = ' '
     for vulgar_word in vulgar_words_lst:
         if vulgar_word in cho_word_lst:
             print(vulgar_word)
+            vulgar_words = vulgar_words + vulgar_word + ' '
 
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
 
-### WORD CLOUD FOR VULGAR WORDS ###
-def word_cloud_fuck():
-    cho_word_lst = []
-    with open ("manifesto-data.json", 'r') as f:
-        cho_manifesto = json.load(f)
-    cho_text = cho_manifesto['Seung Hui Cho']['Seung Hui Cho Manifesto']
+def vulgar_words_dorner():
     vulgar_words = ' '
-    tokens = cho_text.split()
-
-    for i in range (len(tokens)):
-        tokens[i] = tokens[i].lower()
-        cho_word_lst.append(tokens[i])
-
     for vulgar_word in vulgar_words_lst:
-        if vulgar_word in cho_word_lst:
+        if vulgar_word in dorner_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def vulgar_words_kaczynski():
+    vulgar_words = ' '
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in kaczynski_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def vulgar_words_rodger():
+    vulgar_words = ' '
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in rodger_word_lst:
+            vulgar_words = vulgar_words + vulgar_word + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(vulgar_words)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def vulgar_words_roof():
+    vulgar_words = ' '
+    for vulgar_word in vulgar_words_lst:
+        if vulgar_word in roof_word_lst:
             vulgar_words = vulgar_words + vulgar_word + ' '
 
     wordcloud = WordCloud(width = 800, height = 800,
@@ -386,6 +449,9 @@ def unique_words():
     autolabel(rects2)
     plt.tight_layout(pad = 1)
     plt.show()
+
+
+
 
 ### %%%% RUN FUNCTIONS HERE %%%% ###
 
