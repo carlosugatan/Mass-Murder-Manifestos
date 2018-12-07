@@ -488,6 +488,8 @@ def unique_words():
     plt.tight_layout(pad = 1)
     plt.show()
 
+## Sentiment Analysis functions ##
+
 def sentiment_adkission():
     sia = SIA()
     results = []
@@ -578,6 +580,231 @@ def sentiment_auvinen():
     plt.tight_layout(pad = 1)
     plt.show()
 
+def sentiment_cho():
+    sia = SIA()
+    results = []
+
+    for line in filtered_cho:
+        pol_score = sia.polarity_scores(line)
+        pol_score['word'] = line
+        results.append(pol_score)
+
+    df = pd.DataFrame.from_records(results)
+    df.head()
+
+    df['label'] = 0
+    df.loc[df['compound'] > 0.2, 'label'] = 1
+    df.loc[df['compound'] < -0.2, 'label'] = -1
+    df.head()
+
+    df.label.value_counts(normalize=True) * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    counts = df.label.value_counts(normalize=True) * 100
+
+    x = counts.index
+    y = counts
+    ax.set_ylabel('Percentage')
+    ax.set_title('Sentiment Analysis')
+    rects = plt.bar(x, y)
+    plt.xticks(x, ("Neutral", "Negative", "Positive"))
+
+
+    def autolabel(rects, xpos='center'):
+        xpos = xpos.lower()  # normalize the case of the parameter
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
+                    '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=9)
+
+    autolabel(rects)
+    plt.tight_layout(pad = 1)
+    plt.show()
+
+def sentiment_dorner():
+    sia = SIA()
+    results = []
+
+    for line in filtered_dorner:
+        pol_score = sia.polarity_scores(line)
+        pol_score['word'] = line
+        results.append(pol_score)
+
+    df = pd.DataFrame.from_records(results)
+    df.head()
+
+    df['label'] = 0
+    df.loc[df['compound'] > 0.2, 'label'] = 1
+    df.loc[df['compound'] < -0.2, 'label'] = -1
+    df.head()
+
+    df.label.value_counts(normalize=True) * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    counts = df.label.value_counts(normalize=True) * 100
+
+    x = counts.index
+    y = counts
+    ax.set_ylabel('Percentage')
+    ax.set_title('Sentiment Analysis')
+    rects = plt.bar(x, y)
+    plt.xticks(x, ("Neutral", "Negative", "Positive"))
+
+
+    def autolabel(rects, xpos='center'):
+        xpos = xpos.lower()  # normalize the case of the parameter
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
+                    '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=9)
+
+    autolabel(rects)
+    plt.tight_layout(pad = 1)
+    plt.show()
+
+def sentiment_kaczynski():
+    sia = SIA()
+    results = []
+
+    for line in filtered_kaczynski:
+        pol_score = sia.polarity_scores(line)
+        pol_score['word'] = line
+        results.append(pol_score)
+
+    df = pd.DataFrame.from_records(results)
+    df.head()
+
+    df['label'] = 0
+    df.loc[df['compound'] > 0.2, 'label'] = 1
+    df.loc[df['compound'] < -0.2, 'label'] = -1
+    df.head()
+
+    df.label.value_counts(normalize=True) * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    counts = df.label.value_counts(normalize=True) * 100
+
+    x = counts.index
+    y = counts
+    ax.set_ylabel('Percentage')
+    ax.set_title('Sentiment Analysis')
+    rects = plt.bar(x, y)
+    plt.xticks(x, ("Neutral", "Negative", "Positive"))
+
+
+    def autolabel(rects, xpos='center'):
+        xpos = xpos.lower()  # normalize the case of the parameter
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
+                    '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=9)
+
+    autolabel(rects)
+    plt.tight_layout(pad = 1)
+    plt.show()
+
+
+def sentiment_rodger():
+    sia = SIA()
+    results = []
+
+    for line in filtered_rodger:
+        pol_score = sia.polarity_scores(line)
+        pol_score['word'] = line
+        results.append(pol_score)
+
+    df = pd.DataFrame.from_records(results)
+    df.head()
+
+    df['label'] = 0
+    df.loc[df['compound'] > 0.2, 'label'] = 1
+    df.loc[df['compound'] < -0.2, 'label'] = -1
+    df.head()
+
+    df.label.value_counts(normalize=True) * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    counts = df.label.value_counts(normalize=True) * 100
+
+    x = counts.index
+    y = counts
+    ax.set_ylabel('Percentage')
+    ax.set_title('Sentiment Analysis')
+    rects = plt.bar(x, y)
+    plt.xticks(x, ("Neutral", "Negative", "Positive"))
+
+
+    def autolabel(rects, xpos='center'):
+        xpos = xpos.lower()  # normalize the case of the parameter
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
+                    '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=9)
+
+    autolabel(rects)
+    plt.tight_layout(pad = 1)
+    plt.show()
+
+def sentiment_roof():
+    sia = SIA()
+    results = []
+
+    for line in filtered_roof:
+        pol_score = sia.polarity_scores(line)
+        pol_score['word'] = line
+        results.append(pol_score)
+
+    df = pd.DataFrame.from_records(results)
+    df.head()
+
+    df['label'] = 0
+    df.loc[df['compound'] > 0.2, 'label'] = 1
+    df.loc[df['compound'] < -0.2, 'label'] = -1
+    df.head()
+
+    df.label.value_counts(normalize=True) * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    counts = df.label.value_counts(normalize=True) * 100
+
+    x = counts.index
+    y = counts
+    ax.set_ylabel('Percentage')
+    ax.set_title('Sentiment Analysis')
+    rects = plt.bar(x, y)
+    plt.xticks(x, ("Neutral", "Negative", "Positive"))
+
+
+    def autolabel(rects, xpos='center'):
+        xpos = xpos.lower()  # normalize the case of the parameter
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
+                    '{}'.format(height), ha=ha[xpos], va='bottom', fontsize=9)
+
+    autolabel(rects)
+    plt.tight_layout(pad = 1)
+    plt.show()
 
 
 ### %%%% RUN FUNCTIONS HERE %%%% ###
@@ -600,21 +827,6 @@ def sentiment_auvinen():
 # word_cloud_kaczynski()
 # word_cloud_dorner()
 # word_cloud_adkission()
-
-# Functions
-
-# I want to create a word cloud of each manifesto of most word used - DONE
-    # Realted to that, I want to create a graph of each manifesto of most word used
-
-# I want to create a graph of word count for each manifesto - DONE
-    # Related to that, show which one has the most words, comparing each manifesto - DONE
-
-# I want to show which one had the most unique vocabulary - DONE
-
-# Perform sentiment analysis?
-    # Negative or positive, although it will probaly be all negative
-    # Will need time to read up on
-
 
 
 # Some sites to consider:
