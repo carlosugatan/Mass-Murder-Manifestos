@@ -37,6 +37,15 @@ with open('vulgar_words.txt', mode='r') as f:
 ## Setting up stopwords
 stopwords = set(STOPWORDS)
 
+## Pronouns List
+pronouns_lst = []
+with open('pronouns.txt', mode='r') as f:
+    contents_pronoun_words = f.readlines()
+    for words in contents_pronoun_words:
+        words = words.replace('\n', '')
+        pronouns_lst.append(words)
+# print(pronouns_lst)
+
 ## Setting up manifesto_data to load text data
 ## Setting up each variable of each author of manifesto to their manifesto text
 with open ("manifesto-data.json", 'r') as f:
@@ -806,6 +815,123 @@ def sentiment_roof():
     plt.tight_layout(pad = 1)
     plt.show()
 
+## Pronoun Functions ##
+def pronouns_adkission():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in adkission_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def pronouns_auvinen():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in auvinen_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def pronouns_cho():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in cho_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def pronouns_dorner():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in dorner_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def pronouns_kaczynski():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in kaczynski_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+def pronouns_rodger():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in rodger_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    # print(pronouns_lst)
+    plt.show()
+
+
+
+def pronouns_roof():
+    pronouns = ' '
+    for pronoun in pronouns_lst:
+        if pronoun in roof_word_lst: ## not filtered
+            pronouns = pronouns + pronoun + ' '
+
+    wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='black',
+                    min_font_size = 10).generate(pronouns)
+    # plot the WordCloud image
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud,  interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    plt.show()
+
+
 
 ### %%%% RUN FUNCTIONS HERE %%%% ###
 
@@ -828,6 +954,8 @@ def sentiment_roof():
 # word_cloud_dorner()
 # word_cloud_adkission()
 
+## Pronouns Funtions ##
+# pronouns_roof()
 
 # Some sites to consider:
 # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
@@ -836,3 +964,4 @@ def sentiment_roof():
 # https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns
 # https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
 # https://www.learndatasci.com/tutorials/sentiment-analysis-reddit-headlines-pythons-nltk/
+# https://github.com/LearnDataSci/article-resources/blob/master/Sentiment%20Analysis%20on%20Reddit%20Headlines%20with%20NLTK/Sentiment%20Analysis%20on%20Reddit%20Headlines%20with%20NLTK.ipynb
