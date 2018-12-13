@@ -1,11 +1,15 @@
 from manifesto_func import *
+from class_manifesto import *
 import unittest
 
-class DataClean(unittest.TestCase):
+# Note: these tests were implemented before OOP implementation
+# Testing based off scraping the data
+class DataCapture(unittest.TestCase):
     def setUp(self):
         self.f = open("manifesto-data.json")
     def test_roof_text(self):
         roof_text = manifesto_data['Dylan Roof']['Dylan Roof Manifesto']
+        ## assertFalse because the goal is to NOT have it in the text
         self.assertFalse("\n" in roof_text)
         self.assertFalse("\u2026" in roof_text)
         self.assertFalse("\f" in roof_text)
@@ -58,16 +62,89 @@ class DataClean(unittest.TestCase):
         self.assertFalse("\u201c" in dorner_text)
         self.assertFalse("\u201d" in dorner_text)
         self.assertFalse("\u2013" in dorner_text)
-    def test_adkission_text(self):
-        adkission_text = manifesto_data['Adkission Manifesto']["The Adkission Manifesto"]
-        self.assertFalse("\n" in adkission_text)
-        self.assertFalse("\u2026" in adkission_text)
-        self.assertFalse("\f" in adkission_text)
-        self.assertFalse("\u2019" in adkission_text)
-        self.assertFalse("\u201c" in adkission_text)
-        self.assertFalse("\u201d" in adkission_text)
-        self.assertFalse("\u2013" in adkission_text)
+    def test_adkisson_text(self):
+        adkisson_text = manifesto_data['Jim Adkisson']["The Adkisson Manifesto"]
+        self.assertFalse("\n" in adkisson_text)
+        self.assertFalse("\u2026" in adkisson_text)
+        self.assertFalse("\f" in adkisson_text)
+        self.assertFalse("\u2019" in adkisson_text)
+        self.assertFalse("\u201c" in adkisson_text)
+        self.assertFalse("\u201d" in adkisson_text)
+        self.assertFalse("\u2013" in adkisson_text)
     def tearDown(self):
         self.f.close()
+
+class DataCleaning(unittest.TestCase):
+    def test_stopwords(self):
+        for stopword in stopwords:
+            self.assertFalse(stopword in filtered_adkisson)
+            self.assertFalse(stopword in filtered_auvinen)
+            self.assertFalse(stopword in filtered_cho)
+            self.assertFalse(stopword in filtered_dorner)
+            self.assertFalse(stopword in filtered_kaczynski)
+            self.assertFalse(stopword in filtered_rodger)
+            self.assertFalse(stopword in filtered_roof)
+    def test_wordlists_adkisson(self):
+        self.assertEqual(type(adkisson_word_lst[0]), type(""))
+        self.assertEqual(type(adkisson_word_lst), type([]))
+        for word in adkisson_word_lst:
+            # https://stackoverflow.com/questions/33205288/python-check-if-a-string-contains-a-digit
+            if any(c.isdigit() for c in word): # skips numbers
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_auvinen(self):
+        self.assertEqual(type(auvinen_word_lst[0]), type(""))
+        self.assertEqual(type(auvinen_word_lst), type([]))
+        for word in auvinen_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_cho(self):
+        self.assertEqual(type(cho_word_lst[0]), type(""))
+        self.assertEqual(type(cho_word_lst), type([]))
+        for word in cho_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_dorner(self):
+        self.assertEqual(type(dorner_word_lst[0]), type(""))
+        self.assertEqual(type(dorner_word_lst), type([]))
+        for word in dorner_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_kaczynski(self):
+        self.assertEqual(type(kaczynski_word_lst[0]), type(""))
+        self.assertEqual(type(kaczynski_word_lst), type([]))
+        for word in kaczynski_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_rodger(self):
+        self.assertEqual(type(rodger_word_lst[0]), type(""))
+        self.assertEqual(type(rodger_word_lst), type([]))
+        for word in rodger_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+    def test_wordlists_roof(self):
+        self.assertEqual(type(roof_word_lst[0]), type(""))
+        self.assertEqual(type(roof_word_lst), type([]))
+        for word in roof_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+## Tests created after implementing OOP
+
+
+
 if __name__  == "__main__":
     unittest.main(verbosity=2)
