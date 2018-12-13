@@ -80,7 +80,7 @@ All base requirements were fulfilled. However, I only created one class instead 
 2. Usable dataset (although only seven manifestos at the moment!)
 
 ## References
-Some resources I used that helped me with this analysis.
+Some resources I used that helped me with this analysis. Matplotlib, Pandas, NLTK documentations were also used.
 1. [https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis](https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis)
 2. [https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/](https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/)
 3. [https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns](https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns)
