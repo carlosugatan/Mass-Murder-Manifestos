@@ -64,7 +64,7 @@ _PDFs of the manifestos are uploaded on `Data Manifesto` folder_
 ## Running the Unit Tests
 Required file: `TESTS_Manifesto.py`
 
-The top portion of the unit tests were written before OOP was implemented. This works for `manifesto_func.py`. **If you are running the tests, please also include `manifesto_func.py`.** Otherwise, the bottom portion are tests created to test the OOP implementation. This requires `class_manifesto.py`. All tests should pass. I wrote them specifically to pass because it was used to make sure data quality and cleaning was working properly.
+The top portion of the unit tests were written before OOP was implemented. This works for `manifesto_func.py`. **If you are running the tests, please also download `manifesto_func.py`.** Otherwise, the bottom portion are tests created to test the OOP implementation. This requires `class_manifesto.py`. All tests should pass. I wrote them specifically to pass because it was used to make sure data quality and cleaning was working properly.
 
 ## Project Requirements fulfilled
 ### Base Requirements
