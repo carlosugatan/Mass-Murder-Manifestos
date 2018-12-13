@@ -2,7 +2,9 @@ from manifesto_func import *
 from class_manifesto import *
 import unittest
 
-# Note: these tests were implemented before OOP implementation
+# Note: Two part test
+# Top tests implemented before OOP
+# The ones on the bottom are tests for OOP
 # Testing based off scraping the data
 class DataCapture(unittest.TestCase):
     def setUp(self):
@@ -92,7 +94,7 @@ class DataCleaning(unittest.TestCase):
             if any(c.isdigit() for c in word): # skips numbers
                 pass
             else:
-                self.assertTrue(word.islower())
+                self.assertTrue(word.islower()) # Check if tokens are lowercase
     def test_wordlists_auvinen(self):
         self.assertEqual(type(auvinen_word_lst[0]), type(""))
         self.assertEqual(type(auvinen_word_lst), type([]))
@@ -142,7 +144,110 @@ class DataCleaning(unittest.TestCase):
             else:
                 self.assertTrue(word.islower())
 
-## Tests created after implementing OOP
+
+# ----------------------------------------------#
+
+## Tests created after implementing OOP ##
+class TestManifesto(unittest.TestCase):
+
+    def setUp(self):
+        self.dylan_roof = Manifesto("Dylan Roof", "Dylan Roof Manifesto", manifesto_data)
+
+        self.elliot_rodger = Manifesto("Elliot Rodger", "The Twisted World: The Story of Elliot Rodger", manifesto_data)
+
+        self.jim_adkisson = Manifesto("Jim Adkisson", "The Adkisson Manifesto", manifesto_data)
+
+    def test_word_lst(self):
+        self.assertEqual(type(self.dylan_roof.word_lst()[0]), type(""))
+        self.assertEqual(type(self.dylan_roof.word_lst()), type([]))
+        for word in self.dylan_roof.word_lst():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.elliot_rodger.word_lst()[0]), type(""))
+        self.assertEqual(type(self.elliot_rodger.word_lst()), type([]))
+        for word in self.elliot_rodger.word_lst():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.jim_adkisson.word_lst()[0]), type(""))
+        self.assertEqual(type(self.jim_adkisson.word_lst()), type([]))
+        for word in self.jim_adkisson.word_lst():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+    def test_unique_words(self):
+        self.assertEqual(type(self.dylan_roof.unique_words()[0]), type(""))
+        self.assertEqual(type(self.dylan_roof.unique_words()), type([]))
+        for word in self.dylan_roof.unique_words():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.elliot_rodger.unique_words()[0]), type(""))
+        self.assertEqual(type(self.elliot_rodger.unique_words()), type([]))
+        for word in self.elliot_rodger.unique_words():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.jim_adkisson.unique_words()[0]), type(""))
+        self.assertEqual(type(self.jim_adkisson.unique_words()), type([]))
+        for word in self.jim_adkisson.unique_words():
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+    def test_stopwords2(self):
+        for stopword in stopwords:
+            self.assertFalse(stopword in self.jim_adkisson.filtered_manifesto)
+            self.assertFalse(stopword in self.elliot_rodger.filtered_manifesto)
+            self.assertFalse(stopword in self.dylan_roof.filtered_manifesto)
+
+    def test_tokens(self):
+        self.assertEqual(type(self.dylan_roof.manifesto_word_lst[0]), type(""))
+        self.assertEqual(type(self.dylan_roof.manifesto_word_lst), type([]))
+        for word in self.dylan_roof.manifesto_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.elliot_rodger.manifesto_word_lst[0]), type(""))
+        self.assertEqual(type(self.elliot_rodger.manifesto_word_lst), type([]))
+        for word in self.elliot_rodger.manifesto_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+        self.assertEqual(type(self.jim_adkisson.manifesto_word_lst[0]), type(""))
+        self.assertEqual(type(self.jim_adkisson.manifesto_word_lst), type([]))
+        for word in self.jim_adkisson.manifesto_word_lst:
+            if any(c.isdigit() for c in word):
+                pass
+            else:
+                self.assertTrue(word.islower())
+
+    def test_manifesto_dict(self):
+        self.assertEqual(type(self.jim_adkisson.manifesto), type(""))
+        self.assertEqual(self.jim_adkisson.author, "Jim Adkisson")
+
+        self.assertEqual(type(self.dylan_roof.manifesto), type(""))
+        self.assertEqual(self.dylan_roof.author, "Dylan Roof")
+
+        self.assertEqual(type(self.elliot_rodger.manifesto), type(""))
+        self.assertEqual(self.elliot_rodger.author, "Elliot Rodger")
+
 
 
 
