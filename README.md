@@ -4,7 +4,7 @@
 Text analysis of mass murderer manifestos
 
 ## Purpose
-This project analyzed seven manifestos. This analysis was originally going to reference [Common Psycholinguistic Themes in Mass Murderer Manifestos](https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=4596&context=dissertations) and [Knoll's psycholinguistic content](https://www.ncbi.nlm.nih.gov/pubmed/23107562). Overtime, a seperate analysis was performed instead. Future work will delve deeper into the language analysis.
+This project analyzed seven manifestos. This analysis was originally going to reference [Common Psycholinguistic Themes in Mass Murderer Manifestos](https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=4596&context=dissertations) and [Knoll's psycholinguistic content](https://www.ncbi.nlm.nih.gov/pubmed/23107562). Overtime, a separate analysis was performed instead. Future work will delve deeper into the language analysis.
 
 This program allows you to analyze the seven manifestos collected from the web using functions such as `word_cloud()` or `vulgar_words()`. See **Functions** part of this README.
 
@@ -77,7 +77,7 @@ All base requirements were fulfilled. However, I only created one class instead 
 
 ### Third Level Requirements
 1. Data visualization
-2. Usable dataset (although only seven manifestos at the momement!)
+2. Usable dataset (although only seven manifestos at the moment!)
 
 ## References
 Some resources I used that helped me with this analysis.
