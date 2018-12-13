@@ -243,14 +243,42 @@ rodger = Manifesto("Elliot Rodger", "The Twisted World: The Story of Elliot Rodg
 roof = Manifesto("Dylann Roof", "Dylann Roof Manifesto", manifesto_data)
 
 
-## Functions
-
-# Dylann_roof.word_cloud()
-# rodger.sentiment_analysis()
+## Word Cloud Functions ##
+# adkisson.word_cloud()
+# auvinen.word_cloud()
+# cho.word_cloud()
+# dorner.word_cloud()
+# kaczynski.word_cloud()
 # rodger.word_cloud()
-# chris_dorner.vulgar_words()
-# print(rodger.word_lst())
-# word_count()
-# unique_words()
-# print(roof.unique_words())
+# roof.word_cloud()
+
+## Vulgar Words Functions ##
+# adkisson.vulgar_words()
+# auvinen.vulgar_words()
+# cho.vulgar_words()
+# dorner.vulgar_words()
+# kaczynski.vulgar_words()
+# rodger.vulgar_words()
+# roof.vulgar_words()
+
+## Pronouns Analysis Functions ##
+# adkisson.pronouns_analysis()
+# auvinen.pronouns_analysis()
+# cho.pronouns_analysis()
+# dorner.pronouns_analysis()
+# kaczynski.pronouns_analysis()
+# rodger.pronouns_analysis()
 # roof.pronouns_analysis()
+
+## Sentiment Analysis Functions ##
+# adkisson.sentiment_analysis()
+# auvinen.sentiment_analysis()
+# cho.sentiment_analysis()
+# dorner.sentiment_analysis()
+# kaczynski.sentiment_analysis()
+# rodger.sentiment_analysis()
+# roof.sentiment_analysis()
+
+# word_count()
+
+# unique_words()
