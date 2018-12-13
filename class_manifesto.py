@@ -13,17 +13,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 
-# pip install matplotlib
-# conda install matplotlib
-# pip install pandas
-# conda install pandas
-# pip install wordcloud
-# sudo pip install -U nltk
-# >> import nltk
-# >> nltk.download('vader_lexicon')
-
-# maybe: conda install scipy
-# pip freeze > requirements.txt
 
 ## Vulgar Words List
 vulgar_words_lst = []
@@ -49,13 +38,14 @@ with open("manifesto-data.json", 'r') as f:
 
 class Manifesto(object):
     def __init__(self, author, title, manifesto_data):
-        self.manifesto_word_lst = []
-        # self.author = ' '.join(manifesto_data[author].keys())
+        self.manifesto_word_lst = []  # word list of each manifesto
         self.author = author
         self.manifesto = manifesto_data[author][title]
 
         # cleaning data
+        # get rid of punctuations
         self.manifesto_clean = "".join((char for char in self.manifesto if char not in string.punctuation))
+        # get each word from manifesto (this HAS stop words but no punctuations)
         self.tokens = self.manifesto_clean.split()
         for i in range (len(self.tokens)):
             self.tokens[i] = self.tokens[i].lower()
@@ -89,8 +79,8 @@ class Manifesto(object):
     ## Word Cloud Function
     def word_cloud(self):
         comment_words = ' '
-        for words in self.tokens:
-            comment_words = comment_words + words + ' '
+        for words in self.tokens: # for each word (this has no punctuations)
+            comment_words = comment_words + words + ' ' # accumulate for each word
 
         wordcloud = WordCloud(width = 800, height = 800,
                         background_color ='black',
@@ -123,14 +113,15 @@ class Manifesto(object):
     ## Sentiment Analysis functions ##
     def sentiment_analysis(self):
         sia = SIA()
-        results = []
+        self.results = []
 
+        # calculate polarity score
         for line in self.filtered_manifesto:
             pol_score = sia.polarity_scores(line)
             pol_score['word'] = line
-            results.append(pol_score)
-
-        df = pd.DataFrame.from_records(results)
+            self.results.append(pol_score)
+        # record in dataframe
+        df = pd.DataFrame.from_records(self.results)
         df.head()
 
         df['label'] = 0
@@ -151,12 +142,12 @@ class Manifesto(object):
         rects = plt.bar(x, y)
         plt.xticks(x, ("Neutral", "Negative", "Positive"))
 
-
+        # labels
         def autolabel(rects, xpos='center'):
             xpos = xpos.lower()  # normalize the case of the parameter
             ha = {'center': 'center', 'right': 'left', 'left': 'right'}
-            offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
-
+            offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}
+        # normalize graph
             for rect in rects:
                 height = rect.get_height()
                 ax.text(rect.get_x() + rect.get_width()*offset[xpos], 1.01*height,
@@ -200,6 +191,7 @@ def word_count():
     plt.tight_layout(pad = 1)
     plt.show()
 
+## same with this one
 def unique_words():
     original = (len(adkisson.word_lst()),len(auvinen.word_lst()),len(cho.word_lst()),len(dorner.word_lst()),len(kaczynski.word_lst()),len(rodger.word_lst()),len(roof.word_lst()))
     unique_words = (len(adkisson.unique_words()),len(auvinen.unique_words()),len(cho.unique_words()),len(dorner.unique_words()),len(kaczynski.unique_words()),len(rodger.unique_words()),len(roof.unique_words()))
@@ -213,7 +205,6 @@ def unique_words():
     rects2 = ax.bar(ind + width/2, unique_words, width,
                     color='IndianRed', label='Unique Words')
 
-    # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel('Number of Words')
     ax.set_title('Orignal text vs. unique words')
     ax.set_xticks(ind)
@@ -221,9 +212,9 @@ def unique_words():
     ax.legend()
 
     def autolabel(rects, xpos='center'):
-        xpos = xpos.lower()  # normalize the case of the parameter
+        xpos = xpos.lower()
         ha = {'center': 'center', 'right': 'left', 'left': 'right'}
-        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}  # x_txt = x + w*off
+        offset = {'center': 0.5, 'right': 0.57, 'left': 0.43}
 
         for rect in rects:
             height = rect.get_height()
@@ -235,6 +226,7 @@ def unique_words():
     plt.tight_layout(pad = 1)
     plt.show()
 
+## setting up each instance
 
 adkisson = Manifesto("Jim Adkisson", "The Adkisson Manifesto", manifesto_data)
 
@@ -248,12 +240,12 @@ kaczynski = Manifesto("Ted Kaczynski", "Industrial Society and Its Future", mani
 
 rodger = Manifesto("Elliot Rodger", "The Twisted World: The Story of Elliot Rodger", manifesto_data)
 
-roof = Manifesto("Dylan Roof", "Dylan Roof Manifesto", manifesto_data)
+roof = Manifesto("Dylann Roof", "Dylann Roof Manifesto", manifesto_data)
 
 
 ## Functions
 
-# dylan_roof.word_cloud()
+# Dylann_roof.word_cloud()
 # rodger.sentiment_analysis()
 # rodger.word_cloud()
 # chris_dorner.vulgar_words()
