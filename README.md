@@ -54,7 +54,7 @@ _PDFs of the manifestos are uploaded on `Data Manifesto` folder_
 ## Functions
 - `word_cloud()` - Displays most used words in a word cloud visualization
 - `vulgar_words()` - Displays most used vulgar words in a word cloud visualization
-- `pronouns_analysis()` - Displays most used pronouns in a word cloud visualization. [Some studies about pronouns and personalities](https://hbr.org/2011/12/your-use-of-pronouns-reveals-your-personality.
+- `pronouns_analysis()` - Displays most used pronouns in a word cloud visualization. [Some studies about pronouns and personalities](https://hbr.org/2011/12/your-use-of-pronouns-reveals-your-personality).
 - `sentiment_analysis()` - Displays polarity of text (positive, negative, neutral)
 
 ### Functions for all manifestos
