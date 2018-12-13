@@ -4,9 +4,9 @@
 Text analysis of mass murderer manifestos
 
 ## Purpose
-This project analyzed seven manifestos. This analysis was originally going to reference [Common Psycholinguistic Themes in Mass Murderer Manifestos](https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=4596&context=dissertations) and [Knoll's psycholinguistic content](https://www.ncbi.nlm.nih.gov/pubmed/23107562). Overtime, a seperate analysis was performed instead. Future work will delve deeper into the language analysis. 
+This project analyzed seven manifestos. This analysis was originally going to reference [Common Psycholinguistic Themes in Mass Murderer Manifestos](https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=4596&context=dissertations) and [Knoll's psycholinguistic content](https://www.ncbi.nlm.nih.gov/pubmed/23107562). Overtime, a seperate analysis was performed instead. Future work will delve deeper into the language analysis.
 
-This program allows you to analyze the seven manifestos collected from the web using functions such as `word_cloud()` or `vulgar_words()`. See **Functions** part of this README. 
+This program allows you to analyze the seven manifestos collected from the web using functions such as `word_cloud()` or `vulgar_words()`. See **Functions** part of this README.
 
 ## Note
 Only seven manifestos were analyzed. I purposely left out Harris and Klebold (Columbine shooting) as their manifestos were written on different mediums across different pages of journals. I left out video manifestos as it would be difficult to transcribe them at this time. These are left for future work.
@@ -46,28 +46,28 @@ The Manifesto JSON files are formatted as follows:
 3. Seung Hui Cho: Seung Hui Cho Manifesto
 4. Christopher Dorner: Christopher Dorner's Manifesto
 5. Ted Kaczynski: Industrial Society and Its Future
-6. Elliot Rodger: The Twisted World: The Story of Elliot Rodger 
+6. Elliot Rodger: The Twisted World: The Story of Elliot Rodger
 7. Dylann Roof: Dylann Roof Manifesto
 
 _PDFs of the manifestos are uploaded on `Data Manifesto` folder_
 
 ## Functions
-- `word_cloud()` - Displays most used words in a word cloud visualization 
+- `word_cloud()` - Displays most used words in a word cloud visualization
 - `vulgar_words()` - Displays most used vulgar words in a word cloud visualization
 - `pronouns_analysis()` - Displays most used pronouns in a word cloud visualization. [Some studies about pronouns and personalities](https://hbr.org/2011/12/your-use-of-pronouns-reveals-your-personality.
 - `sentiment_analysis()` - Displays polarity of text (positive, negative, neutral)
 
-### Functions for all manifestos 
+### Functions for all manifestos
 - `word_count()` - Displays a graph to show the word count of all manifestos
 - `unique_words()` - Displays a graph to show the unique words vs. word count of all manifestos
 
 ## Running the Unit Tests
 Required file: `TESTS_Manifesto.py`
 
-The top portion of the unit tests were written before OOP was implemented. This works for `manifesto_func.py`. **If you are running the tests, please also include `manifesto_func.py`.** Otherwise, the bottom portion are tests created to test the OOP implementation. This requires `class_manifesto.py`. All tests should pass. I wrote them specifically to pass because it was used to make sure data quality and cleaning was working properly. 
+The top portion of the unit tests were written before OOP was implemented. This works for `manifesto_func.py`. **If you are running the tests, please also include `manifesto_func.py`.** Otherwise, the bottom portion are tests created to test the OOP implementation. This requires `class_manifesto.py`. All tests should pass. I wrote them specifically to pass because it was used to make sure data quality and cleaning was working properly.
 
 ## Project Requirements fulfilled
-### Base Requirements 
+### Base Requirements
 All base requirements were fulfilled. However, I only created one class instead of the required 2.
 
 ### Second Level Requirements
@@ -75,12 +75,12 @@ All base requirements were fulfilled. However, I only created one class instead 
 2. Using a library in Python that we did not study in SI508 or used in any assignment
 3. Object-orientation
 
-## Third Level Requirements
-1. Data visualization 
+### Third Level Requirements
+1. Data visualization
 2. Usable dataset (although only seven manifestos at the momement!)
 
 ## References
-Some resources I used that helped me with this analysis. 
+Some resources I used that helped me with this analysis.
 1. [https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis](https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis)
 2. [https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/](https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/)
 3. [https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns](https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns)
