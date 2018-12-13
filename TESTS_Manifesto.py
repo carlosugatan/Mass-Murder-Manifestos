@@ -2,7 +2,7 @@ from manifesto_func import *
 from class_manifesto import *
 import unittest
 
-# Note: Two part test
+# Note: Two-part test
 # Top tests implemented before OOP
 # The ones on the bottom are tests for OOP
 # Testing based off scraping the data
@@ -157,7 +157,7 @@ class TestManifesto(unittest.TestCase):
 
         self.jim_adkisson = Manifesto("Jim Adkisson", "The Adkisson Manifesto", manifesto_data)
 
-    def test_word_lst(self):
+    def test_word_lst(self): # checking if word lists are lowercase
         self.assertEqual(type(self.dylan_roof.word_lst()[0]), type(""))
         self.assertEqual(type(self.dylan_roof.word_lst()), type([]))
         for word in self.dylan_roof.word_lst():
@@ -247,9 +247,6 @@ class TestManifesto(unittest.TestCase):
 
         self.assertEqual(type(self.elliot_rodger.manifesto), type(""))
         self.assertEqual(self.elliot_rodger.author, "Elliot Rodger")
-
-
-
 
 if __name__  == "__main__":
     unittest.main(verbosity=2)
