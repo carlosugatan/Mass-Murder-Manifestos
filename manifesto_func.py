@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 
-
 # pip install matplotlib
 # conda install matplotlib
 # pip install pandas
@@ -44,7 +43,6 @@ with open('pronouns.txt', mode='r') as f:
     for words in contents_pronoun_words:
         words = words.replace('\n', '')
         pronouns_lst.append(words)
-# print(pronouns_lst)
 
 ## Setting up manifesto_data to load text data
 ## Setting up each variable of each author of manifesto to their manifesto text
@@ -53,13 +51,16 @@ with open ("manifesto-data.json", 'r') as f:
 
     ## adkisson
     adkisson_text = manifesto_data['Jim Adkisson']["The Adkisson Manifesto"]
+    # remove punctuations: https://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python
     adkisson_text = "".join((char for char in adkisson_text if char not in string.punctuation))
+    # split each word
     tokens_adkisson = adkisson_text.split()
     adkisson_word_lst = [] ## Total words
     for i in range (len(tokens_adkisson)):
         tokens_adkisson[i] = tokens_adkisson[i].lower()
         adkisson_word_lst.append(tokens_adkisson[i])
     ## get rid of stopwords
+    # https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
     filtered_adkisson = [w for w in tokens_adkisson if not w in stopwords]
     filtered_adkisson = [] ## No stopwords
     for w in tokens_adkisson:
@@ -142,7 +143,7 @@ with open ("manifesto-data.json", 'r') as f:
             filtered_rodger.append(w)
 
     ## Roof
-    roof_text = manifesto_data['Dylan Roof']['Dylan Roof Manifesto']
+    roof_text = manifesto_data['Dylann Roof']['Dylann Roof Manifesto']
     roof_text = "".join((char for char in roof_text if char not in string.punctuation))
     tokens_roof = roof_text.split()
     roof_word_lst = []
@@ -157,10 +158,11 @@ with open ("manifesto-data.json", 'r') as f:
             filtered_roof.append(w)
 
 ## Word Cloud Functions ##
+## documentation from https://amueller.github.io/word_cloud/
 def word_cloud_roof():
     comment_words = ' '
-    for words in tokens_roof:
-        comment_words = comment_words + words + ' '
+    for words in tokens_roof: # reads each word
+        comment_words = comment_words + words + ' ' # accumulate each word
 
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
@@ -280,7 +282,7 @@ def vulgar_words_adkisson():
     vulgar_words = ' '
     for vulgar_word in vulgar_words_lst:
         if vulgar_word in filtered_adkisson:
-            vulgar_words = vulgar_words + vulgar_word + ' '
+            vulgar_words = vulgar_words + vulgar_word + ' '   # accumulate each word
 
     wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='black',
@@ -391,14 +393,17 @@ def vulgar_words_roof():
 
 ## Word Count Functions ##
 def word_count():
+## Pandas documentation and sample charts
+# https://stackoverflow.com/questions/23591254/python-pandas-matplotlib-annotating-labels-above-bar-chart-columns
 
+## data frame for authors and number of words respectively
     df=pd.DataFrame({'Authors': [ 'Adkisson', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'],
                      'Number of Words': [len(adkisson_word_lst),len(auvinen_word_lst),len(cho_word_lst),len(dorner_word_lst),len(kaczynski_word_lst),len(rodger_word_lst),len(roof_word_lst)],})
 
     df = df.set_index('Authors')
     ax = df.plot(kind='bar',  title='Total Words in Manifesto')
     ax.set_ylabel('Number of Words')
-    ax.set_ylim(0, 130000)
+    ax.set_ylim(0, 130000) # charting so things don't look funky
     for i, label in enumerate(list(df.index)):
         score = df.ix[label]['Number of Words']
         ax.annotate(str(score), (i-0.299, score + 0.04), fontsize=9)
@@ -406,6 +411,7 @@ def word_count():
     plt.show()
 
 def unique_words():
+## matplotlib documentation and sample charts
 
     # Cho
     cho_words = []
@@ -498,19 +504,21 @@ def unique_words():
     plt.show()
 
 ## Sentiment Analysis functions ##
-
+#https://github.com/LearnDataSci/article-resources/blob/master/Sentiment%20Analysis%20on%20Reddit%20Headlines%20with%20NLTK/Sentiment%20Analysis%20on%20Reddit%20Headlines%20with%20NLTK.ipynb
+# # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
+# https://www.learndatasci.com/tutorials/sentiment-analysis-reddit-headlines-pythons-nltk/
 def sentiment_adkisson():
     sia = SIA()
     results = []
-
-    for line in filtered_adkisson:
+    # calculating polarity score of each word
+    for line in filtered_adkisson: # no stopwords
         pol_score = sia.polarity_scores(line)
         pol_score['word'] = line
         results.append(pol_score)
-
+    # put into a dataframe
     df = pd.DataFrame.from_records(results)
     df.head()
-
+    # for plotting
     df['label'] = 0
     df.loc[df['compound'] > 0.2, 'label'] = 1
     df.loc[df['compound'] < -0.2, 'label'] = -1
@@ -796,7 +804,7 @@ def sentiment_roof():
     x = counts.index
     y = counts
     ax.set_ylabel('Percentage')
-    ax.set_title('Sentiment Analysis of Dylan Roof Manifesto')
+    ax.set_title('Sentiment Analysis of Dylann Roof Manifesto')
     rects = plt.bar(x, y)
     plt.xticks(x, ("Neutral", "Negative", "Positive"))
 
@@ -935,7 +943,7 @@ def pronouns_roof():
 
 # unique_words()
 
-word_count()
+# word_count()
 
 ## Vulgar words functions ##
 # vulgar_words_roof()
@@ -958,7 +966,7 @@ word_count()
 ## Sentiment Analysis Functions ##
 # sentiment_roof()
 
-# Some sites to consider:
+# Somes sites used as references for project:
 # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
 # https://www.digitalvidya.com/blog/an-introduction-to-text-analysis-in-python/
 # https://www.cs.cmu.edu/~biglou/resources/
