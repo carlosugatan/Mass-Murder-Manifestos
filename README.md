@@ -20,6 +20,8 @@ You can view the results **[here](https://github.com/carlosugatan/Mass-Murder-Ma
 ## Necessary libraries
 - You will need to install [Numpy](https://www.scipy.org/install.html), [WorldCloud](https://github.com/amueller/word_cloud), [Matplotlib](https://matplotlib.org/users/installing.html), [Pandas](https://pandas.pydata.org/getpandas.html), and [NLTK](https://www.nltk.org/install.html), to run this program.
 
+- [Textract](https://textract.readthedocs.io/en/stable/) was used to scrape data from PDFs. Not required unless you're interested in running `data_scraper.py` in which case, you would have to change the path of the file.
+
 **Note on NLTK:**
 
 You make have to install vader_lexicon through NLTK's installer.
