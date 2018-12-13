@@ -3,7 +3,7 @@ import string
 import numpy as np
 import nltk
 import json
-from data_scraper import *
+# from data_scraper import *
 import numpy as np
 # Python program to generate WordCloud
 from wordcloud import WordCloud, STOPWORDS
@@ -51,20 +51,20 @@ with open('pronouns.txt', mode='r') as f:
 with open ("manifesto-data.json", 'r') as f:
     manifesto_data = json.load(f)
 
-    ## Adkission
-    adkission_text = manifesto_data['Adkission Manifesto']["The Adkission Manifesto"]
-    adkission_text = "".join((char for char in adkission_text if char not in string.punctuation))
-    tokens_adkission = adkission_text.split()
-    adkission_word_lst = [] ## Total words
-    for i in range (len(tokens_adkission)):
-        tokens_adkission[i] = tokens_adkission[i].lower()
-        adkission_word_lst.append(tokens_adkission[i])
+    ## adkisson
+    adkisson_text = manifesto_data['Jim Adkisson']["The Adkisson Manifesto"]
+    adkisson_text = "".join((char for char in adkisson_text if char not in string.punctuation))
+    tokens_adkisson = adkisson_text.split()
+    adkisson_word_lst = [] ## Total words
+    for i in range (len(tokens_adkisson)):
+        tokens_adkisson[i] = tokens_adkisson[i].lower()
+        adkisson_word_lst.append(tokens_adkisson[i])
     ## get rid of stopwords
-    filtered_adkission = [w for w in tokens_adkission if not w in stopwords]
-    filtered_adkission = [] ## No stopwords
-    for w in tokens_adkission:
+    filtered_adkisson = [w for w in tokens_adkisson if not w in stopwords]
+    filtered_adkisson = [] ## No stopwords
+    for w in tokens_adkisson:
         if w not in stopwords:
-            filtered_adkission.append(w)
+            filtered_adkisson.append(w)
 
     ## Auvinen
     auvinen_text = manifesto_data['Eric Auvinen']["Natural Selector's Manifesto"]
@@ -258,10 +258,10 @@ def word_cloud_dorner():
     plt.tight_layout(pad = 0)
     plt.show()
 
-def word_cloud_adkission():
+def word_cloud_adkisson():
     comment_words = ' '
 
-    for words in tokens_adkission:
+    for words in tokens_adkisson:
         comment_words = comment_words + words + ' '
 
     wordcloud = WordCloud(width = 800, height = 800,
@@ -276,10 +276,10 @@ def word_cloud_adkission():
     plt.show()
 
 ## Vulgar Words Functions ##
-def vulgar_words_adkission():
+def vulgar_words_adkisson():
     vulgar_words = ' '
     for vulgar_word in vulgar_words_lst:
-        if vulgar_word in filtered_adkission:
+        if vulgar_word in filtered_adkisson:
             vulgar_words = vulgar_words + vulgar_word + ' '
 
     wordcloud = WordCloud(width = 800, height = 800,
@@ -392,8 +392,8 @@ def vulgar_words_roof():
 ## Word Count Functions ##
 def word_count():
 
-    df=pd.DataFrame({'Authors': [ 'Adkission', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'],
-                     'Number of Words': [len(adkission_word_lst),len(auvinen_word_lst),len(cho_word_lst),len(dorner_word_lst),len(kaczynski_word_lst),len(rodger_word_lst),len(roof_word_lst)],})
+    df=pd.DataFrame({'Authors': [ 'Adkisson', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'],
+                     'Number of Words': [len(adkisson_word_lst),len(auvinen_word_lst),len(cho_word_lst),len(dorner_word_lst),len(kaczynski_word_lst),len(rodger_word_lst),len(roof_word_lst)],})
 
     df = df.set_index('Authors')
     ax = df.plot(kind='bar',  title='Total Words in Manifesto')
@@ -423,11 +423,11 @@ def unique_words():
         else:
             pass
 
-    # Adkission
-    adkission_words = []
-    for word in adkission_word_lst:
-        if word not in adkission_words:
-            adkission_words.append(word)
+    # Adkisson
+    adkisson_words = []
+    for word in adkisson_word_lst:
+        if word not in adkisson_words:
+            adkisson_words.append(word)
         else:
             pass
 
@@ -463,8 +463,8 @@ def unique_words():
         else:
             pass
 
-    original = (len(adkission_word_lst),len(auvinen_word_lst),len(cho_word_lst),len(dorner_word_lst),len(kaczynski_word_lst),len(rodger_word_lst),len(roof_word_lst))
-    unique_words = (len(adkission_words),len(auvinen_words),len(cho_words),len(dorner_words),len(kaczynski_words),len(rodger_words),len(roof_words))
+    original = (len(adkisson_word_lst),len(auvinen_word_lst),len(cho_word_lst),len(dorner_word_lst),len(kaczynski_word_lst),len(rodger_word_lst),len(roof_word_lst))
+    unique_words = (len(adkisson_words),len(auvinen_words),len(cho_words),len(dorner_words),len(kaczynski_words),len(rodger_words),len(roof_words))
 
     ind = np.arange(len(original))  # the x locations for the groups
     width = 0.43  # the width of the bars
@@ -479,7 +479,7 @@ def unique_words():
     ax.set_ylabel('Number of Words')
     ax.set_title('Orignal text vs. unique words')
     ax.set_xticks(ind)
-    ax.set_xticklabels(('Adkission', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'))
+    ax.set_xticklabels(('Adkisson', 'Auvinen', 'Cho', 'Dorner', 'Kaczynski', 'Rodger', 'Roof'))
     ax.legend()
 
     def autolabel(rects, xpos='center'):
@@ -499,11 +499,11 @@ def unique_words():
 
 ## Sentiment Analysis functions ##
 
-def sentiment_adkission():
+def sentiment_adkisson():
     sia = SIA()
     results = []
 
-    for line in filtered_adkission:
+    for line in filtered_adkisson:
         pol_score = sia.polarity_scores(line)
         pol_score['word'] = line
         results.append(pol_score)
@@ -525,7 +525,7 @@ def sentiment_adkission():
     x = counts.index
     y = counts
     ax.set_ylabel('Percentage')
-    ax.set_title('Sentiment Analysis')
+    ax.set_title('Sentiment Analysis of Adkisson ')
     rects = plt.bar(x, y)
     plt.xticks(x, ("Neutral", "Negative", "Positive"))
 
@@ -796,7 +796,7 @@ def sentiment_roof():
     x = counts.index
     y = counts
     ax.set_ylabel('Percentage')
-    ax.set_title('Sentiment Analysis')
+    ax.set_title('Sentiment Analysis of Dylan Roof Manifesto')
     rects = plt.bar(x, y)
     plt.xticks(x, ("Neutral", "Negative", "Positive"))
 
@@ -816,10 +816,10 @@ def sentiment_roof():
     plt.show()
 
 ## Pronoun Functions ##
-def pronouns_adkission():
+def pronouns_adkisson():
     pronouns = ' '
     for pronoun in pronouns_lst:
-        if pronoun in adkission_word_lst: ## not filtered
+        if pronoun in adkisson_word_lst: ## not filtered
             pronouns = pronouns + pronoun + ' '
 
     wordcloud = WordCloud(width = 800, height = 800,
@@ -913,8 +913,6 @@ def pronouns_rodger():
     # print(pronouns_lst)
     plt.show()
 
-
-
 def pronouns_roof():
     pronouns = ' '
     for pronoun in pronouns_lst:
@@ -937,7 +935,7 @@ def pronouns_roof():
 
 # unique_words()
 
-# word_count()
+word_count()
 
 ## Vulgar words functions ##
 # vulgar_words_roof()
@@ -952,10 +950,13 @@ def pronouns_roof():
 # word_cloud_auvinen()
 # word_cloud_kaczynski()
 # word_cloud_dorner()
-# word_cloud_adkission()
+# word_cloud_adkisson()
 
 ## Pronouns Funtions ##
 # pronouns_roof()
+
+## Sentiment Analysis Functions ##
+# sentiment_roof()
 
 # Some sites to consider:
 # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
