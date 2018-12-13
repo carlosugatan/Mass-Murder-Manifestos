@@ -158,21 +158,23 @@ from datetime import datetime
 
 
 
-
 # Web Scraping Vulgar Words
-letters = list(string.ascii_lowercase)
-for letter in letters:
-    url_to_scrape = "https://www.noswearing.com/dictionary/b"
-CACHE_FNAME = "vulgar_words.json"
-
-primary_cache = Cache(CACHE_FNAME)
-
-while primary_cache.get(url_to_scrape) is None:
-	data = requests.get(url_to_scrape)
-	html_text = data.text
-	primary_cache.set(url_to_scrape,html_text)
-
-soup = BeautifulSoup(primary_cache.get(url_to_scrape), features="html.parser")
-vulgar_text = soup.find('td', {'valign': 'top'})
-for word in vulgar_text.find_all('b'):
-    print(word.text)
+# letters = list(string.ascii_lowercase)
+# with open('vulgar_words.txt', mode='w') as f:
+#     for letter in letters:
+#         url_to_scrape = "https://www.noswearing.com/dictionary/%%"
+#         url_to_scrape = url_to_scrape.replace('%%', letter)
+#         CACHE_FNAME = "vulgar_words.json"
+#
+#         primary_cache = Cache(CACHE_FNAME)
+#
+#         while primary_cache.get(url_to_scrape) is None:
+#         	data = requests.get(url_to_scrape)
+#         	html_text = data.text
+#         	primary_cache.set(url_to_scrape,html_text)
+#
+#         soup = BeautifulSoup(primary_cache.get(url_to_scrape), features="html.parser")
+#         vulgar_text = soup.find('td', {'valign': 'top'})
+#         for word in vulgar_text.find_all('b'):
+#             vulgar_wrds = f.write(word.text + "\n")
+            # print(word.text)
