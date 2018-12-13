@@ -198,7 +198,7 @@ def unique_words():
 
     ind = np.arange(len(original))  # the x locations for the groups
     width = 0.43  # the width of the bars
-
+    # bars
     fig, ax = plt.subplots()
     rects1 = ax.bar(ind - width/2, original, width,
                     color='SkyBlue', label='Original')
