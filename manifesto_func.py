@@ -938,33 +938,54 @@ def pronouns_roof():
     plt.show()
 
 
-
 ### %%%% RUN FUNCTIONS HERE %%%% ###
 
-# unique_words()
-
-# word_count()
+## Word Cloud Functions ##
+# word_cloud_adkisson()
+# word_cloud_auvinen()
+# word_cloud_cho()
+# word_cloud_dorner()
+# word_cloud_kaczynski()
+# word_cloud_roger()
+# word_cloud_roof()
 
 ## Vulgar words functions ##
-# vulgar_words_roof()
-# vulgar_words_rodger()
+# vulgar_words_adkisson()
+# vulgar_words_auvinen()
 # vulgar_words_cho()
-# word_cloud_fuck()
+# vulgar_words_dorner()
+# vulgar_words_kaczynski()
+# vulgar_words_rodger()
+# vulgar_words_roof()
 
-## Word cloud functions ##
-# word_cloud_roof()
-# word_cloud_rodger()
-# word_cloud_cho()
-# word_cloud_auvinen()
-# word_cloud_kaczynski()
-# word_cloud_dorner()
-# word_cloud_adkisson()
-
-## Pronouns Funtions ##
+## Pronouns Analysis functions ##
+# pronouns_adkisson()
+# pronouns_auvinen()
+# pronouns_cho()
+# pronouns_dorner()
+# pronouns_kaczynski()
+# pronouns_rodger()
 # pronouns_roof()
 
 ## Sentiment Analysis Functions ##
+# sentiment_adkisson()
+# sentiment_auvinen()
+# sentiment_cho()
+# sentiment_dorner()
+# sentiment_kaczynski()
+# sentiment_rodger()
 # sentiment_roof()
+
+# word_count()
+
+# unique_words()
+
+
+
+
+
+
+
 
 # Somes sites used as references for project:
 # https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis
