@@ -66,19 +66,6 @@ Required file: `TESTS_Manifesto.py`
 
 The top portion of the unit tests were written before OOP was implemented. This works for `manifesto_func.py`. **If you are running the tests, please also download `manifesto_func.py`.** Otherwise, the bottom portion are tests created to test the OOP implementation. This requires `class_manifesto.py`. All tests should pass. I wrote them specifically to pass because it was used to make sure data quality and cleaning was working properly.
 
-## Project Requirements fulfilled
-### Base Requirements
-All base requirements were fulfilled. However, I only created one class instead of the required 2.
-
-### Second Level Requirements
-1. Scraping data using BeautifulSoup
-2. Using a library in Python that we did not study in SI508 or used in any assignment
-3. Object-orientation
-
-### Third Level Requirements
-1. Data visualization
-2. Usable dataset (although only seven manifestos at the moment!)
-
 ## References
 Some resources I used that helped me with this analysis. Matplotlib, Pandas, NLTK documentations were also used.
 1. [https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis](https://www.kaggle.com/ngyptr/python-nltk-sentiment-analysis)
